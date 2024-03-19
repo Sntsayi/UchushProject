@@ -287,7 +287,9 @@
                 <span>دلار</span>
               </td>
               <td class="px-20 p-3 text-center">24/56</td>
-              <td class="px-20 p-3 text-center text-gray-500">+12.5</td>
+              <td id="dollar" class="px-20 p-3 text-center text-gray-500">
+                +12.5
+              </td>
               <td class="px-20 p-3 text-center">6754.6</td>
               <td class="px-20 p-3 text-left">
                 <button
@@ -317,7 +319,9 @@
                 <span class="mr-2">تتر</span>
               </td>
               <td class="px-20 p-3 text-center">24/56</td>
-              <td class="px-20 p-3 text-center text-gray-500">+12.5</td>
+              <td id="tether" class="px-20 p-3 text-center text-gray-500">
+                +12.5
+              </td>
               <td class="px-20 p-3 text-center">6754.6</td>
               <td class="px-20 p-3 text-left">
                 <button
@@ -347,7 +351,9 @@
                 <span>یورو</span>
               </td>
               <td class="px-20 p-3 text-center">24/56</td>
-              <td class="px-20 p-3 text-center text-gray-500">+12.5</td>
+              <td id="euro" class="px-20 p-3 text-center text-gray-500">
+                +12.5
+              </td>
               <td class="px-20 p-3 text-center">6754.6</td>
               <td class="px-20 p-3 text-left">
                 <button
@@ -377,7 +383,9 @@
                 <span>پوند</span>
               </td>
               <td class="px-20 p-3 text-center">24/56</td>
-              <td class="px-20 p-3 text-center text-gray-500">+12.5</td>
+              <td id="pound" class="px-20 p-3 text-center text-gray-500">
+                +12.5
+              </td>
               <td class="px-20 p-3 text-center">6754.6</td>
               <td class="px-20 p-3 text-left">
                 <button
@@ -408,7 +416,9 @@
                 <span>درهم امارات</span>
               </td>
               <td class="px-20 p-3 text-center">24/56</td>
-              <td class="px-20 p-3 text-center text-gray-500">+12.5</td>
+              <td id="derham" class="px-20 p-3 text-center text-gray-500">
+                +12.5
+              </td>
               <td class="px-20 p-3 text-center">6754.6</td>
               <td class="px-20 p-3 text-left">
                 <button
@@ -438,7 +448,9 @@
                 <span>یوان چین</span>
               </td>
               <td class="px-20 p-3 text-center">24/56</td>
-              <td class="px-20 p-3 text-center text-gray-500">+12.5</td>
+              <td id="yuan" class="px-20 p-3 text-center text-gray-500">
+                +12.5
+              </td>
               <td class="px-20 p-3 text-center">6754.6</td>
               <td class="px-20 p-3 text-left">
                 <button
@@ -468,7 +480,9 @@
                 <span>دلار کانادا</span>
               </td>
               <td class="px-20 p-3 text-center">24/56</td>
-              <td class="px-20 p-3 text-center text-gray-500">+12.5</td>
+              <td id="Cdollar" class="px-20 p-3 text-center text-gray-500">
+                +12.5
+              </td>
               <td class="px-20 p-3 text-center">6754.6</td>
               <td class="px-20 p-3 text-left">
                 <button
@@ -498,7 +512,9 @@
                 <span>لیر</span>
               </td>
               <td class="px-20 p-3 text-center">24/56</td>
-              <td class="px-20 p-3 text-center text-gray-500">+12.5</td>
+              <td id="lyra" class="px-20 p-3 text-center text-gray-500">
+                +12.5
+              </td>
               <td class="px-20 p-3 text-center">6754.6</td>
               <td class="px-20 p-3 text-left">
                 <button
@@ -528,7 +544,9 @@
                 <span>مانات آذربایجان</span>
               </td>
               <td class="px-20 p-3 text-center">24/56</td>
-              <td class="px-20 p-3 text-center text-gray-500">+12.5</td>
+              <td id="manat" class="px-20 p-3 text-center text-gray-500">
+                +12.5
+              </td>
               <td class="px-20 p-3 text-center">6754.6</td>
               <td class="px-20 p-3 text-left">
                 <button
@@ -558,7 +576,9 @@
                 <span>روبل روسیه</span>
               </td>
               <td class="px-20 p-3 text-center">24/56</td>
-              <td class="px-20 p-3 text-center text-gray-500">+12.5</td>
+              <td id="ruble" class="px-20 p-3 text-center text-gray-500">
+                +12.5
+              </td>
               <td class="px-20 p-3 text-center">6754.6</td>
               <td class="px-20 p-3 text-left">
                 <button
@@ -573,5 +593,128 @@
       </div>
       <!-- section2 -->
     </main>
+
+    <script>
+      //  this code for reading from the txt file and wrtie in the changes in the last 24 hours.
+      // URL of the text file
+      fetch("./text.txt")
+        .then((response) => {
+          if (!response.ok) {
+            throw new Error("Failed to fetch file");
+          }
+          return response.text(); // Convert response to text
+        })
+        .then((fileContent) => {
+          const array = fileContent.split("\r\n");
+          const [
+            dollar,
+            tether,
+            euro,
+            pound,
+            derham,
+            yuan,
+            Cdollar,
+            lyra,
+            manat,
+            ruble,
+          ] = array;
+
+          const dollarTd = document.getElementById("dollar");
+          const tetherTd = document.getElementById("tether");
+          const euroTd = document.getElementById("euro");
+          const poundTd = document.getElementById("pound");
+          const derhamTd = document.getElementById("derham");
+          const yuanTd = document.getElementById("yuan");
+          const CdollarTd = document.getElementById("Cdollar");
+          const lyraTd = document.getElementById("lyra");
+          const manatTd = document.getElementById("manat");
+          const rubleTd = document.getElementById("ruble");
+
+          if (dollar > 0) {
+            dollarTd.style.color = "blue";
+            dollarTd.innerHTML = `%${Math.abs(dollar)}+`;
+          } else {
+            dollarTd.style.color = "red";
+            dollarTd.innerHTML = `%${Math.abs(dollar)}-`;
+          }
+
+          if (tether > 0) {
+            tetherTd.style.color = "blue";
+            tetherTd.innerHTML = `%${Math.abs(tether)}+`;
+          } else {
+            tetherTd.style.color = "red";
+            tetherTd.innerHTML = `%${Math.abs(tether)}-`;
+          }
+
+          if (euro > 0) {
+            euroTd.style.color = "blue";
+            euroTd.innerHTML = `%${Math.abs(euro)}+`;
+          } else {
+            euroTd.style.color = "red";
+            euroTd.innerHTML = `%${Math.abs(euro)}-`;
+          }
+
+          if (pound > 0) {
+            poundTd.style.color = "blue";
+            poundTd.innerHTML = `%${Math.abs(pound)}+`;
+          } else {
+            poundTd.style.color = "red";
+            poundTd.innerHTML = `%${Math.abs(pound)}-`;
+          }
+
+          if (derham > 0) {
+            derhamTd.style.color = "blue";
+            derhamTd.innerHTML = `%${Math.abs(derham)}+`;
+          } else {
+            derhamTd.style.color = "red";
+            derhamTd.innerHTML = `%${Math.abs(derham)}-`;
+          }
+
+          if (yuan > 0) {
+            yuanTd.style.color = "blue";
+            yuanTd.innerHTML = `%${Math.abs(yuan)}+`;
+          } else {
+            yuanTd.style.color = "red";
+            yuanTd.innerHTML = `%${Math.abs(yuan)}-`;
+          }
+
+          if (Cdollar > 0) {
+            CdollarTd.style.color = "blue";
+            CdollarTd.innerHTML = `%${Math.abs(Cdollar)}+`;
+          } else {
+            CdollarTd.style.color = "red";
+            CdollarTd.innerHTML = `%${Math.abs(Cdollar)}-`;
+          }
+
+          if (lyra > 0) {
+            lyraTd.style.color = "blue";
+            lyraTd.innerHTML = `%${Math.abs(lyra)}+`;
+          } else {
+            lyraTd.style.color = "red";
+            lyraTd.innerHTML = `%${Math.abs(lyra)}-`;
+          }
+
+          if (manat > 0) {
+            manatTd.style.color = "blue";
+            manatTd.innerHTML = `%${Math.abs(manat)}+`;
+          } else {
+            manatTd.style.color = "red";
+            manatTd.innerHTML = `%${Math.abs(manat)}-`;
+          }
+
+          if (ruble > 0) {
+            rubleTd.style.color = "blue";
+            rubleTd.innerHTML = `%${Math.abs(ruble)}+`;
+          } else {
+            rubleTd.style.color = "red";
+            rubleTd.innerHTML = `%${Math.abs(ruble)}-`;
+          }
+        })
+        .catch((error) => {
+          console.error("Error fetching file:", error);
+        });
+
+      // logic of search bar
+    </script>
   </body>
 </html>
