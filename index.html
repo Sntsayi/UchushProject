@@ -671,154 +671,139 @@
     </main>
 
     <script>
-      //  this code for reading from the txt file and wrtie in the changes in the last 24 hours.
-      // URL of the text file
-      fetch("./text.txt")
-        .then((response) => {
-          if (!response.ok) {
-            throw new Error("Failed to fetch file");
-          }
-          return response.text(); // Convert response to text
-        })
-        .then((fileContent) => {
-          const array = fileContent.split("\r\n");
-          const [
-            dollar,
-            tether,
-            euro,
-            pound,
-            derham,
-            yuan,
-            Cdollar,
-            lyra,
-            manat,
-            ruble,
-            dollarBazzar,
-            tetherBazzar,
-            euroBazzar,
-            poundBazzar,
-            derhamBazzar,
-            yuanBazzar,
-            CDollarBazzar,
-            lyraBazzar,
-            manatBazzar,
-            rubleBazzar,
-          ] = array;
-          console.log(CDollarBazzar);
+      // array of data
+      let [
+        dollar,
+        tether,
+        euro,
+        pound,
+        derham,
+        yuan,
+        Cdollar,
+        lyra,
+        manat,
+        ruble,
+        dollarBazzar,
+        tetherBazzar,
+        euroBazzar,
+        poundBazzar,
+        derhamBazzar,
+        yuanBazzar,
+        CDollarBazzar,
+        lyraBazzar,
+        manatBazzar,
+        rubleBazzar,
+      ] = [
+        12, 34, 65, 78, 98, 12, 54, 67, 98, 900, 1234, 675, 788, 123231, 56,
+        7887, 233, 565, 789, 232,
+      ];
+      // array of data
 
-          const dollarTd = document.getElementById("dollar");
-          const tetherTd = document.getElementById("tether");
-          const euroTd = document.getElementById("euro");
-          const poundTd = document.getElementById("pound");
-          const derhamTd = document.getElementById("derham");
-          const yuanTd = document.getElementById("yuan");
-          const CdollarTd = document.getElementById("Cdollar");
-          const lyraTd = document.getElementById("lyra");
-          const manatTd = document.getElementById("manat");
-          const rubleTd = document.getElementById("ruble");
+      const dollarTd = document.getElementById("dollar");
+      const tetherTd = document.getElementById("tether");
+      const euroTd = document.getElementById("euro");
+      const poundTd = document.getElementById("pound");
+      const derhamTd = document.getElementById("derham");
+      const yuanTd = document.getElementById("yuan");
+      const CdollarTd = document.getElementById("Cdollar");
+      const lyraTd = document.getElementById("lyra");
+      const manatTd = document.getElementById("manat");
+      const rubleTd = document.getElementById("ruble");
 
-          //  this is for markup cap
-          document.getElementById("dollarBazzar").textContent = dollarBazzar;
-          document.getElementById("tetherBazzar").textContent = tetherBazzar;
-          document.getElementById("euroBazzar").textContent = euroBazzar;
-          document.getElementById("poundBazzar").textContent = poundBazzar;
-          document.getElementById("derhamBazzar").textContent = derhamBazzar;
-          document.getElementById("yuanBazzar").textContent = yuanBazzar;
-          document.getElementById("CDollarBazzar").textContent = CDollarBazzar;
-          document.getElementById("lyraBazzar").textContent = lyraBazzar;
-          document.getElementById("manatBazzar").textContent = manatBazzar;
-          document.getElementById("rubleBazzar").textContent = rubleBazzar;
-          //  this is for markup cap
-
-          // this is for changes last 24 hours
-
-          if (dollar > 0) {
-            dollarTd.style.color = "blue";
-            dollarTd.innerHTML = `%${Math.abs(dollar)}+`;
-          } else {
-            dollarTd.style.color = "red";
-            dollarTd.innerHTML = `%${Math.abs(dollar)}-`;
-          }
-
-          if (tether > 0) {
-            tetherTd.style.color = "blue";
-            tetherTd.innerHTML = `%${Math.abs(tether)}+`;
-          } else {
-            tetherTd.style.color = "red";
-            tetherTd.innerHTML = `%${Math.abs(tether)}-`;
-          }
-
-          if (euro > 0) {
-            euroTd.style.color = "blue";
-            euroTd.innerHTML = `%${Math.abs(euro)}+`;
-          } else {
-            euroTd.style.color = "red";
-            euroTd.innerHTML = `%${Math.abs(euro)}-`;
-          }
-
-          if (pound > 0) {
-            poundTd.style.color = "blue";
-            poundTd.innerHTML = `%${Math.abs(pound)}+`;
-          } else {
-            poundTd.style.color = "red";
-            poundTd.innerHTML = `%${Math.abs(pound)}-`;
-          }
-
-          if (derham > 0) {
-            derhamTd.style.color = "blue";
-            derhamTd.innerHTML = `%${Math.abs(derham)}+`;
-          } else {
-            derhamTd.style.color = "red";
-            derhamTd.innerHTML = `%${Math.abs(derham)}-`;
-          }
-
-          if (yuan > 0) {
-            yuanTd.style.color = "blue";
-            yuanTd.innerHTML = `%${Math.abs(yuan)}+`;
-          } else {
-            yuanTd.style.color = "red";
-            yuanTd.innerHTML = `%${Math.abs(yuan)}-`;
-          }
-
-          if (Cdollar > 0) {
-            CdollarTd.style.color = "blue";
-            CdollarTd.innerHTML = `%${Math.abs(Cdollar)}+`;
-          } else {
-            CdollarTd.style.color = "red";
-            CdollarTd.innerHTML = `%${Math.abs(Cdollar)}-`;
-          }
-
-          if (lyra > 0) {
-            lyraTd.style.color = "blue";
-            lyraTd.innerHTML = `%${Math.abs(lyra)}+`;
-          } else {
-            lyraTd.style.color = "red";
-            lyraTd.innerHTML = `%${Math.abs(lyra)}-`;
-          }
-
-          if (manat > 0) {
-            manatTd.style.color = "blue";
-            manatTd.innerHTML = `%${Math.abs(manat)}+`;
-          } else {
-            manatTd.style.color = "red";
-            manatTd.innerHTML = `%${Math.abs(manat)}-`;
-          }
-
-          if (ruble > 0) {
-            rubleTd.style.color = "blue";
-            rubleTd.innerHTML = `%${Math.abs(ruble)}+`;
-          } else {
-            rubleTd.style.color = "red";
-            rubleTd.innerHTML = `%${Math.abs(ruble)}-`;
-          }
-        })
-        .catch((error) => {
-          console.error("Error fetching file:", error);
-        });
+      //  this is for markup cap
+      document.getElementById("dollarBazzar").textContent = dollarBazzar;
+      document.getElementById("tetherBazzar").textContent = tetherBazzar;
+      document.getElementById("euroBazzar").textContent = euroBazzar;
+      document.getElementById("poundBazzar").textContent = poundBazzar;
+      document.getElementById("derhamBazzar").textContent = derhamBazzar;
+      document.getElementById("yuanBazzar").textContent = yuanBazzar;
+      document.getElementById("CDollarBazzar").textContent = CDollarBazzar;
+      document.getElementById("lyraBazzar").textContent = lyraBazzar;
+      document.getElementById("manatBazzar").textContent = manatBazzar;
+      document.getElementById("rubleBazzar").textContent = rubleBazzar;
+      //  this is for markup cap
 
       // this is for changes last 24 hours
 
-      // logic of search bar
+      if (dollar > 0) {
+        dollarTd.style.color = "blue";
+        dollarTd.innerHTML = `%${Math.abs(dollar)}+`;
+      } else {
+        dollarTd.style.color = "red";
+        dollarTd.innerHTML = `%${Math.abs(dollar)}-`;
+      }
+
+      if (tether > 0) {
+        tetherTd.style.color = "blue";
+        tetherTd.innerHTML = `%${Math.abs(tether)}+`;
+      } else {
+        tetherTd.style.color = "red";
+        tetherTd.innerHTML = `%${Math.abs(tether)}-`;
+      }
+
+      if (euro > 0) {
+        euroTd.style.color = "blue";
+        euroTd.innerHTML = `%${Math.abs(euro)}+`;
+      } else {
+        euroTd.style.color = "red";
+        euroTd.innerHTML = `%${Math.abs(euro)}-`;
+      }
+
+      if (pound > 0) {
+        poundTd.style.color = "blue";
+        poundTd.innerHTML = `%${Math.abs(pound)}+`;
+      } else {
+        poundTd.style.color = "red";
+        poundTd.innerHTML = `%${Math.abs(pound)}-`;
+      }
+
+      if (derham > 0) {
+        derhamTd.style.color = "blue";
+        derhamTd.innerHTML = `%${Math.abs(derham)}+`;
+      } else {
+        derhamTd.style.color = "red";
+        derhamTd.innerHTML = `%${Math.abs(derham)}-`;
+      }
+
+      if (yuan > 0) {
+        yuanTd.style.color = "blue";
+        yuanTd.innerHTML = `%${Math.abs(yuan)}+`;
+      } else {
+        yuanTd.style.color = "red";
+        yuanTd.innerHTML = `%${Math.abs(yuan)}-`;
+      }
+
+      if (Cdollar > 0) {
+        CdollarTd.style.color = "blue";
+        CdollarTd.innerHTML = `%${Math.abs(Cdollar)}+`;
+      } else {
+        CdollarTd.style.color = "red";
+        CdollarTd.innerHTML = `%${Math.abs(Cdollar)}-`;
+      }
+
+      if (lyra > 0) {
+        lyraTd.style.color = "blue";
+        lyraTd.innerHTML = `%${Math.abs(lyra)}+`;
+      } else {
+        lyraTd.style.color = "red";
+        lyraTd.innerHTML = `%${Math.abs(lyra)}-`;
+      }
+
+      if (manat > 0) {
+        manatTd.style.color = "blue";
+        manatTd.innerHTML = `%${Math.abs(manat)}+`;
+      } else {
+        manatTd.style.color = "red";
+        manatTd.innerHTML = `%${Math.abs(manat)}-`;
+      }
+
+      if (ruble > 0) {
+        rubleTd.style.color = "blue";
+        rubleTd.innerHTML = `%${Math.abs(ruble)}+`;
+      } else {
+        rubleTd.style.color = "red";
+        rubleTd.innerHTML = `%${Math.abs(ruble)}-`;
+      }
     </script>
   </body>
 </html>
